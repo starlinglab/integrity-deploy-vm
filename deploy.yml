@@ -1,0 +1,15 @@
+---
+- hosts: "kvm"
+  become: true
+  roles:
+    - hypha.common.provision_ssh_keys
+    - hypha.common.proxmox_server
+    - hypha.common.harden_ssh
+    - hypha.common.node_exporter
+    - hypha.common.prometheus_exporter_addnode
+- hosts: "servers"
+  become: true
+  gather_facts: false
+  roles:
+    - hypha.common.proxmox_provision_vm
+    - hypha.common.gather_facts

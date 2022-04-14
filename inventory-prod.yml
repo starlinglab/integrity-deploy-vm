@@ -1,0 +1,80 @@
+all:
+  vars:
+
+    # Sensible defaults   
+    ansible_user: sysadmin 
+    ansible_python_interpreter: /usr/bin/python3
+
+    # Do not add to local hosts file
+    add_local_host: false
+
+    # Keys to add to all servers
+    ssh_user_keys:
+      - name: yurko
+        key: "ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQCtv4I2W8TlVsWKKHwASF78cGrn06BJi9dGQQQksW0Ke9ED/KJG2pvG4GXnh57/AOuJtUaS3gXBEj/knE3t/qtvO2cUg1EufnkItzNLdY1B0Hwm98I8O7JdhE+3c/SUIU4Miioj/IlKl8fRxDqx03FTVBdd6Q7kKF79LcobTqo7Pd6i7vnp46U6bBm01tDdRB+g+lok9x+B8umRqqjAGcboucwZ5NrzmLjz/p1wg+5Gva2zcyzBp1aQk7JPhsbElTLfhUP7hJbJ6rFWnebgK8z/vbyofeZljXb6LttttMGoWKg6QAdn61mRwEGff1FUPVLiEVnQ5IY+f97NlQ36c81b yurko@tomesh"
+      - name: ben
+        key: "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIMLiPavTvnbFRc6JvkGVinFoAk93k88KTg1u3zZQxMyW benedict@Benedicts-MacBook-Air.local"
+      - name: cole
+        key: "ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABgQDa7CV1MuEEWiO21CcrakO5h/2W8SgXGqN9xUj7tmT/9i4+IYoCFw4eARe9ZMUUuAa/jBThKK9oAylMEc5u6faWUVUNY5z46KeNEH482z+kcprSEYEY0w9lWyA5c93BIRcvH3KYZkfwCe4U5i6cxD3RAHJNTuHKdeUfT4hCWEyJMKNPsW5ggILJe/9Iq7XVy1ukXmV+ta0u9AKH/fWW4OA6RADzD7eFNZtooZoU1VAcRgpaLhzVFp+0kyhBIciiajZ4r217TMA+DEQ9QGVIxrQJJGm6v0UYLOPuv3NAnGrjHFE7+gGXKVQljx2N/eoyKmF7lWaqDBg3uvic3FCSBeunC5rggeFTtfZ37/J9Lk+rwWwk3HgfzLc7eefYG2lPoX3ftjeD41E4EcobH8A2J1dOgcD7SiOwCZc8dGtWMjC02SaSufWnl8swphd+PNdO/JeWLbGmnVW3AfiaDrVHLXviP2NRfwEKtbH4oB9d/aaryREgi3fLm6MsRm8c+GSWUOc= cole@hypha"
+
+
+    proxmox_server:
+      KVM1:
+        api_host: "15.235.15.140"
+        api_user: "root@pam"
+        api_password: "{{ secret_KVM_password }}"
+
+    # Server that monitoring configs will be updated on
+    monitor_server: monitor.prod.starlinglab.org
+
+  children:
+    # Configured KVM and provision VMs
+    kvm:
+      vars:
+        monitor_job: "infra"
+      hosts:
+        KVM1: # Installs necessary items on KVM server
+    servers:
+      vars:
+        # Default settings for all servers
+        kvm_gw_address: 15.235.15.254
+        kvm_ip_address_cidr: 32
+        kvm_gw6_address: 2607:5300:203:9cFF:FF:FF:FF:FF
+        kvm_ip6_address_cidr: 64
+        kvm_start: true
+        kvm1_ip6_prefix: "fd0a:1484:755a:14b9::"
+        node: KVM1
+        kvm_template: Debian11
+      hosts:
+        integrity.prod.starlinglab.org:
+          kvm_id: 206
+          pve_kvm_cores: 4
+          pve_disk_size: "30G"
+          kvm_ip_address: 198.50.135.54
+          kvm_ip6_address: 2607:5300:203:9c8c::54
+          kvm1_ip_address: 10.55.1.1
+          kvm1_ip6_address: "{{ kvm1_ip6_prefix }}1:1"
+          kvm_net_0: "virtio=00:50:56:0a:08:55,bridge=vmbr0"
+          kvm_net_1: "virtio,bridge=vmbr1"
+          pve_kvm_memory: 8000
+
+        browsertrix.prod.starlinglab.org:
+          kvm_id: 204
+          pve_kvm_cores: 4
+          pve_disk_size: "64G"
+          kvm_ip_address: 198.50.135.53
+          kvm1_ip_address: 10.55.1.2
+          kvm1_ip6_address: "{{ kvm1_ip6_prefix }}1:2"
+          kvm_net_0: "virtio=00:50:56:00:fa:da,bridge=vmbr0"
+          kvm_net_1: "virtio,bridge=vmbr1"
+          pve_kvm_memory: 16000
+        bot.prod.starlinglab.org:
+          kvm_id: 203
+          pve_kvm_cores: 4
+          pve_disk_size: "64G"
+          kvm_ip_address: 198.50.135.60
+          kvm1_ip_address: 10.55.1.4
+          kvm1_ip6_address: "{{ kvm1_ip6_prefix }}1:4"
+          kvm_net_0: "virtio=00:50:56:07:2e:82,bridge=vmbr0"
+          kvm_net_1: "virtio,bridge=vmbr1"
+          pve_kvm_memory: 8000
