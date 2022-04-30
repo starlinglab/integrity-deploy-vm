@@ -54,7 +54,7 @@ all:
         kvm_template: Debian11
       hosts:
         integrity.prod.starlinglab.org:
-          kvm_id: 206
+          kvm_id: 201
           pve_kvm_cores: 4
           pve_disk_size: "30G"
           kvm_ip_address: 198.50.135.54
@@ -65,8 +65,8 @@ all:
           kvm_net_1: "virtio,bridge=vmbr1"
           pve_kvm_memory: 8000
 
-        browsertrix.prod.starlinglab.org:
-          kvm_id: 204
+        hala.browsertrix.prod.starlinglab.org:
+          kvm_id: 202
           pve_kvm_cores: 4
           pve_disk_size: "128G"
           kvm_ip_address: 198.50.135.53
@@ -77,20 +77,19 @@ all:
           kvm_net_1: "virtio,bridge=vmbr1"
           pve_kvm_memory: 32000
 
-        browsertrix2.prod.starlinglab.org:
-          kvm_id: 207
+        star.browsertrix.prod.starlinglab.org:
+          kvm_id: 203
           pve_kvm_cores: 4
           pve_disk_size: "128G"
           kvm_ip_address:  198.50.135.56
           kvm_ip6_address: 2607:5300:203:9c8c:ffff::56
-          kvm1_ip_address: 10.55.1.2          
-          kvm1_ip6_address: "{{ kvm1_ip6_prefix }}1:2"
+          kvm1_ip_address: 10.55.1.3
+          kvm1_ip6_address: "{{ kvm1_ip6_prefix }}1:3"
           kvm_net_0: "virtio=00:50:56:01:a0:70,bridge=vmbr0"
           kvm_net_1: "virtio,bridge=vmbr1"
           pve_kvm_memory: 32000
-
         bot.prod.starlinglab.org:
-          kvm_id: 203
+          kvm_id: 204
           pve_kvm_cores: 4
           pve_disk_size: "64G"
           kvm_ip_address: 198.50.135.60
@@ -100,7 +99,6 @@ all:
           kvm_net_0: "virtio=00:50:56:07:2e:82,bridge=vmbr0"
           kvm_net_1: "virtio,bridge=vmbr1"
           pve_kvm_memory: 8000
-
         deploy.prod.starlinglab.org:
           kvm_id: 210
           pve_kvm_cores: 2

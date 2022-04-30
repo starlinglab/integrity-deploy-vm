@@ -52,7 +52,7 @@ all:
         kvm_template: Debian11
       hosts:
         integrity.stg.starlinglab.org:
-          kvm_id: 106
+          kvm_id: 101
           pve_kvm_cores: 4
           pve_disk_size: "30G"
           kvm_ip_address: 198.50.135.52
@@ -62,8 +62,8 @@ all:
           kvm_net_0: "virtio=00:50:56:08:59:ba,bridge=vmbr0"
           kvm_net_1: "virtio,bridge=vmbr1"
           pve_kvm_memory: 8000
-        browsertrix.stg.starlinglab.org:
-          kvm_id: 104
+        org1.browsertrix.stg.starlinglab.org:
+          kvm_id: 102
           pve_kvm_cores: 4
           pve_disk_size: "128G"
           kvm_ip_address: 198.50.135.48
@@ -73,26 +73,25 @@ all:
           kvm_net_0: "virtio=00:50:56:09:b4:0f,bridge=vmbr0"
           kvm_net_1: "virtio,bridge=vmbr1"
           pve_kvm_memory: 16000
-        browsertrix2.stg.starlinglab.org:
-          kvm_id: 107
+        org2.browsertrix.stg.starlinglab.org:
+          kvm_id: 103
           pve_kvm_cores: 4
           pve_disk_size: "128G"
           kvm_ip_address:  198.50.135.55
           kvm_ip6_address: 2607:5300:203:9c8c:ffff::55
-          kvm1_ip_address: 10.55.0.2
-          kvm1_ip6_address: "{{ kvm1_ip6_prefix }}0:2"
+          kvm1_ip_address: 10.55.0.3
+          kvm1_ip6_address: "{{ kvm1_ip6_prefix }}0:3"
           kvm_net_0: "virtio=00:50:56:03:09:5b,bridge=vmbr0"
           kvm_net_1: "virtio,bridge=vmbr1"
           pve_kvm_memory: 16000
-
         bot.stg.starlinglab.org:
-          kvm_id: 103
+          kvm_id: 104
           pve_kvm_cores: 2
           pve_disk_size: "64G"
           kvm_ip_address: 198.50.135.49
           kvm_ip6_address: 2607:5300:203:9c8c:ffff::49          
-          kvm1_ip_address: 10.55.0.3
-          kvm1_ip6_address: "{{ kvm1_ip6_prefix }}0:3"
+          kvm1_ip_address: 10.55.0.4
+          kvm1_ip6_address: "{{ kvm1_ip6_prefix }}0:4"
           kvm_net_0: "virtio=00:50:56:05:b3:0d,bridge=vmbr0"
           kvm_net_1: "virtio,bridge=vmbr1"
           pve_kvm_memory: 8000
@@ -115,7 +114,6 @@ all:
           kvm_net_1: "virtio,bridge=vmbr1"
           kvm_start: true
           pve_kvm_memory: 8000
-
         ipfs3.stg.starlinglab.org:
           kvm_id: 403
           pve_kvm_cores: 3
