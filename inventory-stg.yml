@@ -17,6 +17,11 @@ all:
       - name: cole
         key: "ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABgQDa7CV1MuEEWiO21CcrakO5h/2W8SgXGqN9xUj7tmT/9i4+IYoCFw4eARe9ZMUUuAa/jBThKK9oAylMEc5u6faWUVUNY5z46KeNEH482z+kcprSEYEY0w9lWyA5c93BIRcvH3KYZkfwCe4U5i6cxD3RAHJNTuHKdeUfT4hCWEyJMKNPsW5ggILJe/9Iq7XVy1ukXmV+ta0u9AKH/fWW4OA6RADzD7eFNZtooZoU1VAcRgpaLhzVFp+0kyhBIciiajZ4r217TMA+DEQ9QGVIxrQJJGm6v0UYLOPuv3NAnGrjHFE7+gGXKVQljx2N/eoyKmF7lWaqDBg3uvic3FCSBeunC5rggeFTtfZ37/J9Lk+rwWwk3HgfzLc7eefYG2lPoX3ftjeD41E4EcobH8A2J1dOgcD7SiOwCZc8dGtWMjC02SaSufWnl8swphd+PNdO/JeWLbGmnVW3AfiaDrVHLXviP2NRfwEKtbH4oB9d/aaryREgi3fLm6MsRm8c+GSWUOc= cole@hypha"
 
+
+    # Ansible deploy key
+    pve_kvm_sshkeys: "{{ lookup('file', '~/.ssh/id_rsa.pub') }}"
+    kvm_qemu_agent: true
+
     proxmox_server:
       KVM1:
         api_host: "15.235.15.140"
@@ -62,16 +67,30 @@ all:
           pve_kvm_cores: 4
           pve_disk_size: "128G"
           kvm_ip_address: 198.50.135.48
+          kvm_ip6_address: 2607:5300:203:9c8c:ffff::48
           kvm1_ip_address: 10.55.0.2
           kvm1_ip6_address: "{{ kvm1_ip6_prefix }}0:2"
           kvm_net_0: "virtio=00:50:56:09:b4:0f,bridge=vmbr0"
           kvm_net_1: "virtio,bridge=vmbr1"
           pve_kvm_memory: 16000
+        browsertrix2.stg.starlinglab.org:
+          kvm_id: 107
+          pve_kvm_cores: 4
+          pve_disk_size: "128G"
+          kvm_ip_address:  198.50.135.55
+          kvm_ip6_address: 2607:5300:203:9c8c:ffff::55
+          kvm1_ip_address: 10.55.0.2
+          kvm1_ip6_address: "{{ kvm1_ip6_prefix }}0:2"
+          kvm_net_0: "virtio=00:50:56:03:09:5b,bridge=vmbr0"
+          kvm_net_1: "virtio,bridge=vmbr1"
+          pve_kvm_memory: 16000
+
         bot.stg.starlinglab.org:
           kvm_id: 103
           pve_kvm_cores: 2
           pve_disk_size: "64G"
           kvm_ip_address: 198.50.135.49
+          kvm_ip6_address: 2607:5300:203:9c8c:ffff::49          
           kvm1_ip_address: 10.55.0.3
           kvm1_ip6_address: "{{ kvm1_ip6_prefix }}0:3"
           kvm_net_0: "virtio=00:50:56:05:b3:0d,bridge=vmbr0"
