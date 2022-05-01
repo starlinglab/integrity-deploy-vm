@@ -100,7 +100,7 @@ all:
           pve_kvm_cores: 3
           pve_disk_size: "10G"
           kvm_ip_address: 198.50.135.57
-          kvm_ip6_address: 2607:5300:203:9c8c::57
+          kvm_ip6_address: 2607:5300:203:9c8c:ffff::57
           kvm_net_0: "virtio=00:50:56:06:39:a5,bridge=vmbr0"
           kvm_net_1: "virtio,bridge=vmbr1"
           pve_kvm_memory: 8000
@@ -109,7 +109,7 @@ all:
           pve_kvm_cores: 3
           pve_disk_size: "10G"
           kvm_ip_address: 198.50.135.58
-          kvm_ip6_address: 2607:5300:203:9c8c::58
+          kvm_ip6_address: 2607:5300:203:9c8c:ffff::58
           kvm_net_0: "virtio=00:50:56:03:dc:41,bridge=vmbr0"
           kvm_net_1: "virtio,bridge=vmbr1"
           kvm_start: true
@@ -119,7 +119,7 @@ all:
           pve_kvm_cores: 3
           pve_disk_size: "10G"
           kvm_ip_address: 198.50.135.59
-          kvm_ip6_address: 2607:5300:203:9c8c::59
+          kvm_ip6_address: 2607:5300:203:9c8c:ffff::59
           kvm_net_0: "virtio=00:50:56:01:47:d6,bridge=vmbr0"
           kvm_net_1: "virtio,bridge=vmbr1"
           pve_kvm_memory: 8000
