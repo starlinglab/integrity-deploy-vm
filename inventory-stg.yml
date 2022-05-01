@@ -56,7 +56,7 @@ all:
           pve_kvm_cores: 4
           pve_disk_size: "30G"
           kvm_ip_address: 198.50.135.52
-          kvm_ip6_address: 2607:5300:203:9c8c::52
+          kvm_ip6_address: 2607:5300:203:9c8c:ffff::52
           kvm1_ip_address: 10.55.0.1
           kvm1_ip6_address: "{{ kvm1_ip6_prefix }}0:1"
           kvm_net_0: "virtio=00:50:56:08:59:ba,bridge=vmbr0"
