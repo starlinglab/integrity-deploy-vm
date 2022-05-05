@@ -28,6 +28,9 @@ all:
         api_user: "root@pam"
         api_password: "{{ secret_KVM_password }}"
 
+    # Enable QEMU agent
+    kvm_qemu_agent: true
+
     # Server that monitoring configs will be updated on
     monitor_server: monitor.prod.starlinglab.org
 

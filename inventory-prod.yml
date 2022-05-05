@@ -76,7 +76,6 @@ all:
           kvm_net_0: "virtio=00:50:56:00:fa:da,bridge=vmbr0"
           kvm_net_1: "virtio,bridge=vmbr1"
           pve_kvm_memory: 32000
-
         star.browsertrix.prod.starlinglab.org:
           kvm_id: 203
           pve_kvm_cores: 4
