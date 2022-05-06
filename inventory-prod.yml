@@ -20,7 +20,6 @@ all:
 
     # Ansible deploy key
     pve_kvm_sshkeys: "{{ lookup('file', '~/.ssh/id_rsa.pub') }}"
-    kvm_qemu_agent: true
 
     proxmox_server:
       KVM1:
