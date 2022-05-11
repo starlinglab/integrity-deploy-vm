@@ -57,7 +57,7 @@ all:
         integrity.stg.starlinglab.org:
           kvm_id: 101
           pve_kvm_cores: 4
-          pve_disk_size: "30G"
+          pve_disk_size: "50G"
           kvm_ip_address: 198.50.135.52
           kvm_ip6_address: 2607:5300:203:9c8c:ffff::52
           kvm1_ip_address: 10.55.0.1
@@ -68,13 +68,17 @@ all:
         org1.browsertrix.stg.starlinglab.org:
           kvm_id: 102
           pve_kvm_cores: 4
-          pve_disk_size: "40G"
+          pve_disk_size: "50G"
           kvm_ip_address: 198.50.135.48
           kvm_ip6_address: 2607:5300:203:9c8c:ffff::48
           kvm1_ip_address: 10.55.0.2
           kvm1_ip6_address: "{{ kvm1_ip6_prefix }}0:2"
           kvm_net_0: "virtio=00:50:56:09:b4:0f,bridge=vmbr0"
           kvm_net_1: "virtio,bridge=vmbr1"
+          kvm_disk_scsi1: "Encrypted:100"
+          provision_disk: 
+            "sdb":
+              mount_point: /mnt/browsertrix
           pve_kvm_memory: 16000
         org2.browsertrix.stg.starlinglab.org:
           kvm_id: 103
@@ -86,6 +90,10 @@ all:
           kvm1_ip6_address: "{{ kvm1_ip6_prefix }}0:3"
           kvm_net_0: "virtio=00:50:56:03:09:5b,bridge=vmbr0"
           kvm_net_1: "virtio,bridge=vmbr1"
+          kvm_disk_scsi1: "Encrypted:100"
+          provision_disk: 
+            "sdb":
+              mount_point: /mnt/browsertrix
           pve_kvm_memory: 16000
         bot.stg.starlinglab.org:
           kvm_id: 104

@@ -1,0 +1,36 @@
+---
+- name: Install parted
+  apt:
+    pkg:
+      - parted
+- name: Create a new ext4 primary partition
+  community.general.parted:
+    device: "/dev/{{provision_disk.key}}"
+    number: 1
+    state: present
+    fs_type: ext4
+
+- name: Format sdb1
+  filesystem:
+     fstype: ext4
+     dev: "/dev/{{provision_disk.key}}1"
+     resizefs: true
+
+- name: Creates directory
+  file:
+    path: "{{ provision_disk.value.mount_point }}"
+    state: directory    
+
+- name: Mount up device fstab
+  ansible.posix.mount:
+    path: "{{ provision_disk.value.mount_point }}"
+    src: /dev/sdb1
+    fstype: ext4
+    state: present
+
+- name: Mount up device live
+  ansible.posix.mount:
+    path: "{{ provision_disk.value.mount_point }}"
+    src: /dev/sdb1
+    fstype: ext4
+    state: mounted
