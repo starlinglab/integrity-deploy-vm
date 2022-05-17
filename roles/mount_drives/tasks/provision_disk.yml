@@ -21,12 +21,25 @@
     path: "{{ provision_disk.value.mount_point }}"
     state: directory    
 
-- name: Mount up device fstab
+- name: Mount up device fstab - dev
   ansible.posix.mount:
     path: "{{ provision_disk.value.mount_point }}"
     src: /dev/sdb1
     fstype: ext4
     state: present
+    when: provision_disk.value.label is not defined
+
+- name: Set mount label
+  shell: "e2label /dev/sdb1 {{provision_disk.value.mount_point}}"
+  when: provision_disk.value.label is defined
+
+- name: Mount up device fstab - Label
+  ansible.posix.mount:
+    path: "{{ provision_disk.value.mount_point }}"
+    src: "LABEL={{provision_disk.value.label}}"
+    fstype: ext4
+    state: present
+    when: provision_disk.value.label is  defined
 
 - name: Mount up device live
   ansible.posix.mount:

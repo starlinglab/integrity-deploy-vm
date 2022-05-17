@@ -78,6 +78,7 @@ all:
           provision_disk: 
             "sdb":
               mount_point: /mnt/browsertrix
+              label: BROWSERTRIX
           pve_kvm_memory: 32000
         star.browsertrix.prod.starlinglab.org:
           kvm_id: 203
@@ -93,6 +94,7 @@ all:
           provision_disk: 
             "sdb":
               mount_point: /mnt/browsertrix
+              label: BROWSERTRIX
           pve_kvm_memory: 32000
         bot.prod.starlinglab.org:
           kvm_id: 204

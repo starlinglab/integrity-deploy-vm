@@ -20,7 +20,6 @@ all:
 
     # Ansible deploy key
     pve_kvm_sshkeys: "{{ lookup('file', '~/.ssh/id_rsa.pub') }}"
-    kvm_qemu_agent: true
 
     proxmox_server:
       KVM1:
@@ -79,6 +78,7 @@ all:
           provision_disk: 
             "sdb":
               mount_point: /mnt/browsertrix
+              label: BROWSERTRIX
           pve_kvm_memory: 16000
         org2.browsertrix.stg.starlinglab.org:
           kvm_id: 103
@@ -94,6 +94,7 @@ all:
           provision_disk: 
             "sdb":
               mount_point: /mnt/browsertrix
+              label: BROWSERTRIX
           pve_kvm_memory: 16000
         bot.stg.starlinglab.org:
           kvm_id: 104
