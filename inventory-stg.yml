@@ -63,6 +63,11 @@ all:
           kvm1_ip6_address: "{{ kvm1_ip6_prefix }}0:1"
           kvm_net_0: "virtio=00:50:56:08:59:ba,bridge=vmbr0"
           kvm_net_1: "virtio,bridge=vmbr1"
+          kvm_disk_scsi1: "Encrypted:200"
+          provision_disk: 
+            "sdb":
+              mount_point: /mnt/integrity_store
+              label: INTEGRITY
           pve_kvm_memory: 8000
         org1.browsertrix.stg.starlinglab.org:
           kvm_id: 102
