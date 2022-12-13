@@ -34,7 +34,6 @@ all:
     monitor_server: monitor.prod.starlinglab.org
 
   children:
-
     # Configured KVM and provision VMs
     kvm:
       vars:
@@ -101,12 +100,28 @@ all:
               mount_point: /mnt/browsertrix
               label: BROWSERTRIX
           pve_kvm_memory: 16000
+        k8.stg.starlinglab.org:
+          kvm_id: 109
+          pve_kvm_cores: 4
+          pve_disk_size: "40G"
+          kvm_ip_address:  198.50.135.50
+          kvm_ip6_address: 2607:5300:203:9c8c:ffff::50
+          kvm1_ip_address: 10.55.0.50
+          kvm1_ip6_address: "{{ kvm1_ip6_prefix }}0:50"
+          kvm_net_0: "virtio=00:50:56:0a:b4:38,bridge=vmbr0"
+          kvm_net_1: "virtio,bridge=vmbr1"
+          kvm_disk_scsi1: "Encrypted:100"
+          provision_disk:
+            "sdb":
+              mount_point: /mnt/browsertrix
+              label: BROWSERTRIX
+          pve_kvm_memory: 16000
         bot.stg.starlinglab.org:
           kvm_id: 104
           pve_kvm_cores: 2
           pve_disk_size: "20G"
           kvm_ip_address: 198.50.135.49
-          kvm_ip6_address: 2607:5300:203:9c8c:ffff::49          
+          kvm_ip6_address: 2607:5300:203:9c8c:ffff::49]
           kvm1_ip_address: 10.55.0.4
           kvm1_ip6_address: "{{ kvm1_ip6_prefix }}0:4"
           kvm_net_0: "virtio=00:50:56:05:b3:0d,bridge=vmbr0"
@@ -139,4 +154,20 @@ all:
           kvm_ip6_address: 2607:5300:203:9c8c:ffff::59
           kvm_net_0: "virtio=00:50:56:01:47:d6,bridge=vmbr0"
           kvm_net_1: "virtio,bridge=vmbr1"
+          pve_kvm_memory: 8000
+        integrity-dev.stg.starlinglab.org:
+          kvm_id: 501
+          pve_kvm_cores: 4
+          pve_disk_size: "50G"
+          kvm_ip_address: 198.50.135.61 
+          kvm_ip6_address: 2607:5300:203:9c8c:ffff::61
+          kvm1_ip_address: 10.99.0.1
+          kvm1_ip6_address: "{{ kvm1_ip6_prefix }}99:1"      
+          kvm_net_0: "virtio=00:50:56:09:fa:6a,bridge=vmbr0"
+          kvm_net_1: "virtio,bridge=vmbr1"
+          kvm_disk_scsi1: "Encrypted:200"
+          provision_disk: 
+            "sdb":
+              mount_point: /mnt/integrity_store
+              label: INTEGRITY
           pve_kvm_memory: 8000
