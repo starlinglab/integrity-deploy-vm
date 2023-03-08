@@ -12,5 +12,5 @@
   gather_facts: false
   roles:
     - hypha.common.proxmox_provision_vm
-    - mount_drives
+    - hypha.common.provision_disks
     - hypha.common.gather_facts

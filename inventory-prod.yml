@@ -97,6 +97,22 @@ all:
               mount_point: /mnt/browsertrix
               label: BROWSERTRIX
           pve_kvm_memory: 32000
+        star2.browsertrix.prod.starlinglab.org:
+          kvm_id: 205
+          pve_kvm_cores: 4
+          pve_disk_size: "96G"
+          kvm_ip_address:  198.50.135.58
+          kvm_ip6_address: 2607:5300:203:9c8c:ffff::58
+          kvm1_ip_address: 10.55.1.8
+          kvm1_ip6_address: "{{ kvm1_ip6_prefix }}1:8"
+          kvm_net_0: "virtio=00:50:56:03:dc:41,bridge=vmbr0"
+          kvm_net_1: "virtio,bridge=vmbr1"
+          kvm_disk_scsi1: "Encrypted:200"
+          provision_disk:
+            "sdb":
+              mount_point: /mnt/browsertrix
+              label: BROWSERTRIX
+          pve_kvm_memory: 32000
         bot.prod.starlinglab.org:
           kvm_id: 204
           pve_kvm_cores: 4
