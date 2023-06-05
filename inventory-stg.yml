@@ -1,8 +1,8 @@
 all:
   vars:
 
-    # Sensible defaults   
-    ansible_user: sysadmin 
+    # Sensible defaults
+    ansible_user: sysadmin
     ansible_python_interpreter: /usr/bin/python3
 
     # Do not add to local hosts file
@@ -28,6 +28,7 @@ all:
         api_host: "15.235.15.140"
         api_user: "root@pam"
         api_password: "{{ secret_KVM_password }}"
+        ip_address: "15.235.15.140"
 
     # Enable QEMU agent
     kvm_qemu_agent: true
@@ -65,7 +66,7 @@ all:
           kvm_net_0: "virtio=00:50:56:08:59:ba,bridge=vmbr0"
           kvm_net_1: "virtio,bridge=vmbr1"
           kvm_disk_scsi1: "Encrypted:200"
-          provision_disk: 
+          provision_disk:
             "sdb":
               mount_point: /mnt/integrity_store
               label: INTEGRITY
@@ -81,23 +82,23 @@ all:
           kvm_net_0: "virtio=00:50:56:09:b4:0f,bridge=vmbr0"
           kvm_net_1: "virtio,bridge=vmbr1"
           kvm_disk_scsi1: "Encrypted:100"
-          provision_disk: 
+          provision_disk:
             "sdb":
-              mount_point: /mnt/browsertrix
+              mount_point: /var/snap
               label: BROWSERTRIX
           pve_kvm_memory: 16000
         org2.browsertrix.stg.starlinglab.org:
-          kvm_id: 103
+          kvm_id: 303
           pve_kvm_cores: 4
           pve_disk_size: "40G"
-          kvm_ip_address:  198.50.135.55
+          kvm_ip_address:   198.50.135.61
           kvm_ip6_address: 2607:5300:203:9c8c:ffff::55
           kvm1_ip_address: 10.55.0.3
           kvm1_ip6_address: "{{ kvm1_ip6_prefix }}0:3"
-          kvm_net_0: "virtio=00:50:56:03:09:5b,bridge=vmbr0"
+          kvm_net_0: "virtio=00:50:56:09:fa:6a,bridge=vmbr0"
           kvm_net_1: "virtio,bridge=vmbr1"
           kvm_disk_scsi1: "Encrypted:100"
-          provision_disk: 
+          provision_disk:
             "sdb":
               mount_point: /mnt/browsertrix
               label: BROWSERTRIX
@@ -161,14 +162,14 @@ all:
           kvm_id: 501
           pve_kvm_cores: 4
           pve_disk_size: "50G"
-          kvm_ip_address: 198.50.135.61 
+          kvm_ip_address: 198.50.135.61
           kvm_ip6_address: 2607:5300:203:9c8c:ffff::61
           kvm1_ip_address: 10.99.0.1
-          kvm1_ip6_address: "{{ kvm1_ip6_prefix }}99:1"      
+          kvm1_ip6_address: "{{ kvm1_ip6_prefix }}99:1"
           kvm_net_0: "virtio=00:50:56:09:fa:6a,bridge=vmbr0"
           kvm_net_1: "virtio,bridge=vmbr1"
           kvm_disk_scsi1: "Encrypted:200"
-          provision_disk: 
+          provision_disk:
             "sdb":
               mount_point: /mnt/integrity_store
               label: INTEGRITY
