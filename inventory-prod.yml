@@ -1,8 +1,8 @@
 all:
   vars:
 
-    # Sensible defaults   
-    ansible_user: sysadmin 
+    # Sensible defaults
+    ansible_user: sysadmin
     ansible_python_interpreter: /usr/bin/python3
 
     # Do not add to local hosts file
@@ -25,6 +25,7 @@ all:
         api_host: "15.235.15.140"
         api_user: "root@pam"
         api_password: "{{ secret_KVM_password }}"
+        ip_address: "15.235.15.140"
 
     # Enable QEMU agent
     kvm_qemu_agent: true
@@ -52,16 +53,21 @@ all:
         kvm_template: Debian11
       hosts:
         integrity.prod.starlinglab.org:
-          kvm_id: 201
+          kvm_id: 202 # 201 is 2022 version
           pve_kvm_cores: 4
-          pve_disk_size: "30G"
+          pve_disk_size: "50G"
           kvm_ip_address: 198.50.135.54
           kvm_ip6_address: 2607:5300:203:9c8c:ffff::54
           kvm1_ip_address: 10.55.1.1
           kvm1_ip6_address: "{{ kvm1_ip6_prefix }}1:1"
           kvm_net_0: "virtio=00:50:56:0a:08:55,bridge=vmbr0"
           kvm_net_1: "virtio,bridge=vmbr1"
-          pve_kvm_memory: 8000       
+          kvm_disk_scsi1: "Encrypted:200"
+          provision_disk:
+            "sdb":
+              mount_point: /mnt/integrity_store
+              label: INTEGRITY
+          pve_kvm_memory: 8000
         browsertrix.prod.starlinglab.org:
           kvm_id: 203
           pve_kvm_cores: 4
@@ -72,8 +78,7 @@ all:
           kvm1_ip6_address: "{{ kvm1_ip6_prefix }}1:3"
           kvm_net_0: "virtio=00:50:56:01:a0:70,bridge=vmbr0"
           kvm_net_1: "virtio,bridge=vmbr1"
-          kvm_disk_scsi1: "Encrypted:200"
-          provision_disk: 
+          provision_disk:
             "sdb":
               mount_point: /mnt/browsertrix
               label: BROWSERTRIX
