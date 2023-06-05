@@ -16,8 +16,6 @@ all:
         key: "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIMLiPavTvnbFRc6JvkGVinFoAk93k88KTg1u3zZQxMyW benedict@Benedicts-MacBook-Air.local"
       - name: cole
         key: "ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABgQDa7CV1MuEEWiO21CcrakO5h/2W8SgXGqN9xUj7tmT/9i4+IYoCFw4eARe9ZMUUuAa/jBThKK9oAylMEc5u6faWUVUNY5z46KeNEH482z+kcprSEYEY0w9lWyA5c93BIRcvH3KYZkfwCe4U5i6cxD3RAHJNTuHKdeUfT4hCWEyJMKNPsW5ggILJe/9Iq7XVy1ukXmV+ta0u9AKH/fWW4OA6RADzD7eFNZtooZoU1VAcRgpaLhzVFp+0kyhBIciiajZ4r217TMA+DEQ9QGVIxrQJJGm6v0UYLOPuv3NAnGrjHFE7+gGXKVQljx2N/eoyKmF7lWaqDBg3uvic3FCSBeunC5rggeFTtfZ37/J9Lk+rwWwk3HgfzLc7eefYG2lPoX3ftjeD41E4EcobH8A2J1dOgcD7SiOwCZc8dGtWMjC02SaSufWnl8swphd+PNdO/JeWLbGmnVW3AfiaDrVHLXviP2NRfwEKtbH4oB9d/aaryREgi3fLm6MsRm8c+GSWUOc= cole@hypha"
-      - name: marc
-        key: "AAAAB3NzaC1yc2EAAAADAQABAAABgQC+nGZtKogla1KwwH7JxadD7T/FCrQz5crrm+VdmyG0aCyM0qS3KDcirBHqXCNOUcYaeiUfdca53/9DH1N6QITKroR2Bw+uvmcuZkdNe8saKt3j9nLiqLjh7jh8vqrcYdQ2RvDNtvECtdvD3Vxd4+YbUEQ+NjSZkVjY+aGrz2WnPV+DnyUfMJZ9NE/4HbSmlS7ZvQLfD4bVtzFLE1YTSjSfC3K370Hys5UWpEg21EsVhM4XcLmHP/LZPyXHtv6hTs3xX+pKQltKe7H12lPFP1LUK96Sxs37iIkiUzampuFQK4eB6EKhQqm1O7iuuJgX6PdlSO43zi/xtHe+k1Pd9uBeARkB8XHLMsxTmWXLHl4iqW8xgZQGkltb95u6WVVQeZMK8XlN5CxVSQtweo48rmGSuXpIa7lYLc2wCM1wB/ioAJDFemNHMylLFDy4bFPCFqEnWSY5Ey2qjoIxqhpwAvwGwNeJsd3f60QPfRKAUL4qyMZ2JopcmH+oOVCK5jt2fYM= mlopez@curro"
 
     # Ansible deploy key
     pve_kvm_sshkeys: "{{ lookup('file', '~/.ssh/id_rsa.pub') }}"
@@ -63,25 +61,8 @@ all:
           kvm1_ip6_address: "{{ kvm1_ip6_prefix }}1:1"
           kvm_net_0: "virtio=00:50:56:0a:08:55,bridge=vmbr0"
           kvm_net_1: "virtio,bridge=vmbr1"
-          pve_kvm_memory: 8000
-
-        hala.browsertrix.prod.starlinglab.org:
-          kvm_id: 202
-          pve_kvm_cores: 4
-          pve_disk_size: "96G"
-          kvm_ip_address: 198.50.135.53
-          kvm_ip6_address: 2607:5300:203:9c8c:ffff::53
-          kvm1_ip_address: 10.55.1.2          
-          kvm1_ip6_address: "{{ kvm1_ip6_prefix }}1:2"
-          kvm_net_0: "virtio=00:50:56:00:fa:da,bridge=vmbr0"
-          kvm_net_1: "virtio,bridge=vmbr1"
-          kvm_disk_scsi1: "Encrypted:200"
-          provision_disk: 
-            "sdb":
-              mount_point: /mnt/browsertrix
-              label: BROWSERTRIX
-          pve_kvm_memory: 32000
-        star.browsertrix.prod.starlinglab.org:
+          pve_kvm_memory: 8000       
+        browsertrix.prod.starlinglab.org:
           kvm_id: 203
           pve_kvm_cores: 4
           pve_disk_size: "96G"
@@ -97,33 +78,6 @@ all:
               mount_point: /mnt/browsertrix
               label: BROWSERTRIX
           pve_kvm_memory: 32000
-        star2.browsertrix.prod.starlinglab.org:
-          kvm_id: 205
-          pve_kvm_cores: 4
-          pve_disk_size: "96G"
-          kvm_ip_address:  198.50.135.58
-          kvm_ip6_address: 2607:5300:203:9c8c:ffff::58
-          kvm1_ip_address: 10.55.1.8
-          kvm1_ip6_address: "{{ kvm1_ip6_prefix }}1:8"
-          kvm_net_0: "virtio=00:50:56:03:dc:41,bridge=vmbr0"
-          kvm_net_1: "virtio,bridge=vmbr1"
-          kvm_disk_scsi1: "Encrypted:200"
-          provision_disk:
-            "sdb":
-              mount_point: /mnt/browsertrix
-              label: BROWSERTRIX
-          pve_kvm_memory: 32000
-        bot.prod.starlinglab.org:
-          kvm_id: 204
-          pve_kvm_cores: 4
-          pve_disk_size: "64G"
-          kvm_ip_address: 198.50.135.60
-          kvm_ip6_address: 2607:5300:203:9c8c:ffff::60
-          kvm1_ip_address: 10.55.1.4
-          kvm1_ip6_address: "{{ kvm1_ip6_prefix }}1:4"
-          kvm_net_0: "virtio=00:50:56:07:2e:82,bridge=vmbr0"
-          kvm_net_1: "virtio,bridge=vmbr1"
-          pve_kvm_memory: 8000
         deploy.prod.starlinglab.org:
           kvm_id: 210
           pve_kvm_cores: 2
